@@ -19,7 +19,7 @@ io.on('connection', function(socket){
 	//Mi metto in ascolto per i messaggi e poi
 	socket.on('messaggio', function(messaggio){
 		//Li loggo sulla console di nodejs (sul server) e poi
-		console.log('Messaggio ricevuto'+messaggio.testo);
+		console.log('Messaggio ricevuto: '+messaggio.testo);
 		//Li emetto a tutti tranne che quello che l'ha mandato , se avessi voluto
 		//mandarli a tutti compreso chi l'ha mandato avrei dovuto scrivere
 		//io.emit
