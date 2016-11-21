@@ -13,6 +13,10 @@ socket.on('connect', function() {
 socket.on('messaggio', function(messaggio_ricevuto) {
 	console.log('Nuovo messaggio ricevuto: ');
 	console.log(messaggio_ricevuto.testo);
+
+	//Qui cerco per classe, ovvero .nome_classe
+	//Il metodo appen aggiunge alla fine del tag di classe messages
+	jQuery('.messages').append('<p>'+messaggio_ricevuto.testo+'</p>')
 });
 
 
@@ -30,6 +34,7 @@ $form.on('submit', function (event){
 	//Quindi gestisco il submit per conto mio, per dire quando uso i socket o richieste ajax 
 	event.preventDefault();
 
+	//Qui cerco per nome del tag
 	var $message = $form.find('input[name=message]');
 
 
@@ -39,7 +44,7 @@ $form.on('submit', function (event){
 		testo: $message.val()
 	});
 
-
+	//cancello il messaggio mandato nella pagina web
 	$message.val('');
 
 

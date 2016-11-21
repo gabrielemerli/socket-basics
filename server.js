@@ -23,7 +23,8 @@ io.on('connection', function(socket){
 		//Li emetto a tutti tranne che quello che l'ha mandato , se avessi voluto
 		//mandarli a tutti compreso chi l'ha mandato avrei dovuto scrivere
 		//io.emit
-		socket.broadcast.emit('messaggio', messaggio);
+		//socket.broadcast.emit('messaggio', messaggio);
+		io.emit('messaggio', messaggio);
 
 		//Poi per provare apro 2 browser che puntano qui.
 		//Sulla console di uno dei 2 scrivo
