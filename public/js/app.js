@@ -11,12 +11,13 @@ socket.on('connect', function() {
 
 //Ora ascolto gli eventi in arrivo e faccio qualcosa quando li ricevo
 socket.on('messaggio', function(messaggio_ricevuto) {
+	var momentTimestamp = moment.utc(messaggio_ricevuto.timestamp);
 	console.log('Nuovo messaggio ricevuto: ');
 	console.log(messaggio_ricevuto.testo);
 
 	//Qui cerco per classe, ovvero .nome_classe
 	//Il metodo appen aggiunge alla fine del tag di classe messages
-	jQuery('.messages').append('<p>'+messaggio_ricevuto.testo+'</p>')
+	jQuery('.messages').append('<p><strong>'+momentTimestamp.local().format('YYYY-MM-DD HH:mm:ss')+'</strong> '+messaggio_ricevuto.testo+'</p>')
 });
 
 

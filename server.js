@@ -1,6 +1,8 @@
 var PORT = process.env.PORT || 3000;
 var express = require('express');
 var app = express();
+var moment = require('moment');
+
 
 //Start a news server e usa questa express app
 var http = require('http').Server(app);
@@ -18,12 +20,15 @@ io.on('connection', function(socket){
 	//Devo quindi emettere tutti i messaggi che arrivano al server
 	//Mi metto in ascolto per i messaggi e poi
 	socket.on('messaggio', function(messaggio){
+
+
 		//Li loggo sulla console di nodejs (sul server) e poi
-		console.log('Messaggio ricevuto: '+messaggio.testo);
+		console.log('Messaggio ricevuto: '+messaggio.testo+ ' '+moment().valueOf());
 		//Li emetto a tutti tranne che quello che l'ha mandato , se avessi voluto
 		//mandarli a tutti compreso chi l'ha mandato avrei dovuto scrivere
 		//io.emit
 		//socket.broadcast.emit('messaggio', messaggio);
+		messaggio.timestamp = moment().valueOf();
 		io.emit('messaggio', messaggio);
 
 		//Poi per provare apro 2 browser che puntano qui.
@@ -34,7 +39,8 @@ io.on('connection', function(socket){
 
 	//Mando un messaggio al client
 	socket.emit('messaggio', {
-		testo: 'Wealcome to the metal age'
+		testo: 'Wealcome to the metal age',
+		timestamp: moment().valueOf()
 	});
 
 

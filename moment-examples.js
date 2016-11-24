@@ -40,6 +40,8 @@ console.log(now.unix());
 
 
 var timestamp = 1232312312824;
+//Per il momento attuale
+//var timestamp = moment().valueOf();
 //Al posto di chiamare la funzione moment, accediamo al metodo utc dell'oggetto moment
 var dataOra = moment.utc(timestamp);
 console.log(dataOra.format());
